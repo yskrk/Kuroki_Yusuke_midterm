@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ChestController : MonoBehaviour
 {
-	[SerializeField] GameObject star;
+	[SerializeField] private GameObject star;
+	[SerializeField] private float timeSpawn = 0.15f;
 	private Animator anim;
 	private bool isSearched = false;
+	private float timeCount = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -15,10 +17,13 @@ public class ChestController : MonoBehaviour
     }
 
 	private void FixedUpdate() {
+		timeCount += Time.deltaTime;
+
 		// spawn stars
-		// while (isSearched) {
-		// 	Instantiate(star, transform.position, Quaternion.identity);
-		// }
+		if (isSearched && (timeCount > timeSpawn)) {
+			timeCount = 0.0f;
+			Instantiate(star, transform.position, Quaternion.identity);
+		}
 	}
 
 	private void OnTriggerStay2D(Collider2D other) {

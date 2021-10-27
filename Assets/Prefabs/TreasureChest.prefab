@@ -246,3 +246,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   star: {fileID: 0}
+  timeSpawn: 0.15
